@@ -16,6 +16,8 @@ namespace ContosoOnlineOrders.Api
 {
     public class Startup
     {
+        static string CurrentVersion = "1.0.0";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,10 +31,10 @@ namespace ContosoOnlineOrders.Api
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo 
+                c.SwaggerDoc(CurrentVersion, new OpenApiInfo 
                 { 
                     Title = "Contoso Online Orders", 
-                    Version = "v1" 
+                    Version = CurrentVersion
                 });
             });
         }
@@ -44,7 +46,9 @@ namespace ContosoOnlineOrders.Api
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Contoso Online Orders v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint(
+                    $"/swagger/{CurrentVersion}/swagger.json", 
+                    $"Contoso Online Orders {CurrentVersion}"));
             }
 
             app.UseHttpsRedirection();
