@@ -56,7 +56,7 @@ namespace ContosoOnlineOrders.Api
                 });
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
