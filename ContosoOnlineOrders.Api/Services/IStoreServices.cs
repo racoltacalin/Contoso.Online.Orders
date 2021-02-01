@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ContosoOnlineOrders.Api.Models;
 
@@ -7,13 +8,13 @@ namespace ContosoOnlineOrders.Api.Services
     {
         IEnumerable<Product> GetProducts();
         Product GetProduct(int id);
-        void UpdateProduct(int id, Product product);
+        void UpdateProductInventory(int id, int inventory);
         void CreateProduct(Product product);
-        bool CheckProductInventory(int id);
+        bool CheckProductInventory(int id, int forAmount);
         void CreateOrder(Order order);
         IEnumerable<Order> GetOrders();
-        bool CheckOrderInventory(int id);
-        Order GetOrder(int id);
-        bool ShipOrder(int id);
+        bool CheckOrderInventory(Guid id);
+        Order GetOrder(Guid id);
+        bool ShipOrder(Guid id);
     }
 }
