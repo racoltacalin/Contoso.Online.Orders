@@ -2,7 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <OpenApiDocumentName>1.0.0</OpenApiDocumentName>
   </PropertyGroup>
+
+  <Target Name="Generate OpenAPI Specification Document" AfterTargets="Build">
+    <Exec Command="echo 'Generating OpenAPI file for $(OpenApiDocumentName)'" />
+    <Exec Command="dotnet swagger tofile --serializeasv2 --output $(OutputPath)$(AssemblyName).json $(OutputPath)$(AssemblyName).dll $(OpenApiDocumentName)"
+          ContinueOnError="true"/>
+	</Target>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" NoWarn="NU1605" />
