@@ -19,22 +19,40 @@ namespace ContosoOnlineOrders.Api.Controllers
             StoreServices = storeServices;
         }
 
-        [HttpPost]
+        [HttpPost("/orders")]
         public async Task<ActionResult<Order>> PostOrder(Order order)
         {
-            throw new NotImplementedException();
+            try
+            {
+                StoreServices.CreateOrder(order);
+                return Created($"/orders/{order.Id}", order);
+            }
+            catch
+            {
+                return Conflict();
+            }
         }
 
-        [HttpGet]
+        [HttpGet("/products")]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            throw new NotImplementedException();
+            return new JsonResult(StoreServices.GetProducts());
+            //return Ok(StoreServices.GetProducts());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("/products/{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            throw new NotImplementedException();
+            var product = StoreServices.GetProduct(id);
+
+            if(product == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(product);
+            }
         }
     }
 #pragma warning restore CS1998
