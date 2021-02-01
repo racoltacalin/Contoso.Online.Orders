@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ContosoOnlineOrders.Api.Controllers
 {
+#pragma warning disable CS1998
     [Route("[controller]")]
     [ApiController]
     public class AdminController : ControllerBase
@@ -42,4 +43,5 @@ namespace ContosoOnlineOrders.Api.Controllers
         }
         
     }
+#pragma warning restore CS1998
 }
