@@ -49,9 +49,11 @@ namespace ContosoOnlineOrders.Api
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint(
-                    $"/swagger/{CurrentVersion}/swagger.json", 
-                    $"Contoso Online Orders {CurrentVersion}"));
+                app.UseSwaggerUI(c => 
+                {
+                    c.SwaggerEndpoint($"/swagger/{CurrentVersion}/swagger.json", $"Contoso Online Orders {CurrentVersion}");
+                    c.DisplayOperationId();
+                });
             }
 
             app.UseHttpsRedirection();
