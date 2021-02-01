@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using ContosoOnlineOrders.Api.Models;
 using ContosoOnlineOrders.Api.Services;
@@ -10,6 +11,8 @@ namespace ContosoOnlineOrders.Api.Controllers
 #pragma warning disable CS1998
     [Route("[controller]")]
     [ApiController]
+    [Produces(MediaTypeNames.Application.Json)]
+    [Consumes(MediaTypeNames.Application.Json)]
     public class ShopController : ControllerBase
     {
         public IStoreServices StoreServices { get; }
@@ -20,11 +23,11 @@ namespace ContosoOnlineOrders.Api.Controllers
         }
 
 #if OperationId
-        [HttpPost("/orders", Name = nameof(PostOrder))]
+        [HttpPost("/orders", Name = nameof(CreateOrder))]
 #else
         [HttpPost("/orders")]
 #endif
-        public async Task<ActionResult<Order>> PostOrder(Order order)
+        public async Task<ActionResult<Order>> CreateOrder(Order order)
         {
             try
             {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using ContosoOnlineOrders.Api.Models;
 using ContosoOnlineOrders.Api.Services;
@@ -10,6 +11,8 @@ namespace ContosoOnlineOrders.Api.Controllers
 #pragma warning disable CS1998
     [Route("[controller]")]
     [ApiController]
+    [Produces(MediaTypeNames.Application.Json)]
+    [Consumes(MediaTypeNames.Application.Json)]
     public class AdminController : ControllerBase
     {
         public IStoreServices StoreServices { get; }
