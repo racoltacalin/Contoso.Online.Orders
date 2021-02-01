@@ -20,18 +20,20 @@ namespace ContosoOnlineOrders.NSwagGeneratedClient
                 code for the API isn't discoverable. Each method is named
                 specific to the 
                 ------------------------------------------------------------
-                apiClient.CheckInventoryAsync(1);   // check a product's inventory
-                apiClient.InventoryAsync(1,         // update a product's inventory
+                apiClient.CheckInventoryAsync(1);                           // check a product's inventory
+                apiClient.CheckInventoryAsync(Guid.Empty)                   // check an order's inventory
+                apiClient.CheckInventory2Async(1,                           // update a product's inventory
                     new InventoryUpdateRequest
                     {
                         CountToAdd = 5, ProductId = 1
                     });
-                apiClient.OrdersAllAsync();         // get all orders
-                apiClient.OrdersAsync(1);           // get one order
-                apiClient.ShipAsync(1);             // ship an order
-                apiClient.ShopAllAsync();           // get all products
-                apiClient.ShopAsync(new Order());   // create a new order
-                apiClient.Shop2Async(1);            // get one product
+                apiClient.Orders2Async(Guid.Empty);                         // get one order
+                apiClient.OrdersAllAsync();                                 // get all orders
+                apiClient.OrdersAsync(new Order());                         // create a new order
+                apiClient.Products2Async(1);                                // get one product
+                apiClient.ProductsAllAsync(new CreateProductRequest());     // create a product
+                apiClient.ProductsAsync();                                  // get all products
+                apiClient.ShipAsync(Guid.Empty);                            // ship an order
                 */
             }
 
