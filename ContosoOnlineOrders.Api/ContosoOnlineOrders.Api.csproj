@@ -5,6 +5,10 @@
     <OpenApiDocumentName>1.0.0</OpenApiDocumentName>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)'=='WellDescribed'">
+    <DefineConstants>OperationId</DefineConstants>
+  </PropertyGroup>
+
   <Target Name="Generate OpenAPI Specification Document" AfterTargets="Build">
     <Exec Command="echo 'Generating OpenAPI file for $(OpenApiDocumentName)'" />
     <Exec Command="dotnet swagger tofile --serializeasv2 --output $(OutputPath)$(AssemblyName).json $(OutputPath)$(AssemblyName).dll $(OpenApiDocumentName)"

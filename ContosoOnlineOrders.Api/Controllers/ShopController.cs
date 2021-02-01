@@ -19,7 +19,11 @@ namespace ContosoOnlineOrders.Api.Controllers
             StoreServices = storeServices;
         }
 
+#if OperationId
+        [HttpPost("/orders", Name = nameof(PostOrder))]
+#else
         [HttpPost("/orders")]
+#endif
         public async Task<ActionResult<Order>> PostOrder(Order order)
         {
             try
@@ -33,14 +37,21 @@ namespace ContosoOnlineOrders.Api.Controllers
             }
         }
 
+#if OperationId
+        [HttpGet("/products", Name = nameof(GetProducts))]
+#else
         [HttpGet("/products")]
+#endif
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            return new JsonResult(StoreServices.GetProducts());
-            //return Ok(StoreServices.GetProducts());
+            return Ok(StoreServices.GetProducts());
         }
 
+#if OperationId
+        [HttpGet("/products/{id}", Name = nameof(GetProduct))]
+#else
         [HttpGet("/products/{id}")]
+#endif
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
             var product = StoreServices.GetProduct(id);
